@@ -491,7 +491,7 @@
           <p style="font-size: 12px" class="chart-info-line">
             📏<strong>Distance</strong> of each segment| 📈<strong
               >Elevation gain</strong
-            >
+            > 📅 <strong>Estimated days:</strong> ${segmentDaysRounded}
             | 📉<strong>Elevation loss</strong> |
             <strong>Short decription</strong> of each segment
           </p>
@@ -1424,6 +1424,9 @@
           geometry: { type: "LineString", coordinates: segmentCoords },
           properties: { segment: segmentIndex },
         });
+        
+        let segmentDays = segmentInfo.distanceKm / avgSpeed / 10; // 10 timer pr dag
+        let segmentDaysRounded = Math.round(segmentDays * 10) / 10;
 
         let originalPropsSlice = originalProperties.slice(startIdx, endIdx + 1);
         let waterCount = 0;
